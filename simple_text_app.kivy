@@ -1,0 +1,44 @@
+from kivy.app import App
+from kivy.uix.button import Button
+from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.label import Label
+from kivy.uix.textinput import TextInput
+
+
+#this is our layout;- 
+#and element will design here 
+class Interface(FloatLayout):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        # these are for widget creation using python
+        #for each widget  we have object in uix class
+        self.btn = Button(text="click Me!", size_hint=(0.5, 0.1), pos_hint={"center_x": 0.5, "center_y": 0.5})
+        self.label = Label(text="Nothing!", size_hint=(0.5, 0.1), pos_hint={"center_x": 0.5, "center_y": 0.6})
+        self.textInput = TextInput(hint_text="Nothing!", size_hint=(0.5, 0.1),
+                                   pos_hint={"center_x": 0.5, "center_y": 0.8}, multiline=False)
+        # to handle the actions like btn preess ,relase,textenter,hover we use bind method that bind the actions
+        self.btn.bind(on_press=self.display_info)
+        self.textInput.bind(on_text_validate=self.display_info)
+
+        self.add_widget(self.textInput)
+        self.add_widget(self.label)
+        self.add_widget(self.btn)
+
+    def display_info(self, obj):
+        #create text input using code
+        #we can also use. kv file to edit it
+        #text pass into `data` var
+
+        data = self.textInput.text
+        #further value of `data` chnaged with `self.label.text`
+        self.label.text = data
+
+
+class FirstApp(App):
+    # this build function is used to show widget on the canvas and write in App class
+    def build(self):
+        return Interface()
+
+
+y = FirstApp()
+y.run()
