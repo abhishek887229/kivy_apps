@@ -1,0 +1,29 @@
+Interface:
+    orientation:"vertical"
+    padding:[dp(30),dp(30), dp(30), dp(30)]
+    spacing:dp(30)
+    Label:
+        text:"Sentiment Analyzer"
+
+        size_hint_y:None
+        height:dp(50)
+    
+    TextInput:
+    #ids use to access element 
+        id:textinput
+        hint_text:"enter text to check sentiment"
+        size_hint:1,0.6
+    BoxLayout:
+        size_hint:1,0.1
+
+        Button:
+        # we use to root to access element in Python
+            text:"analyze"
+            on_press:root.analyzer()
+        
+        Button:
+            text:"Clear"
+    
+    Label:
+        id:label
+        size_hint:1,0.3
